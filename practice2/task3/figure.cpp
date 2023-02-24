@@ -1,15 +1,23 @@
 #include "figure.h"
+#include <vector>
+#include <algorithm>
 using namespace std;
 figure::figure(float X1, float X2, float X3, float X4, float Y1, float Y2, float Y3, float Y4)
 {
-	x1 = X1;
-	x2 = X2;
-	x3 = X3;
-	x4 = X4;
-	y1 = Y1;
-	y2 = Y2;
-	y3 = Y3;
-	y4 = Y4;
+	vector<pair<float, float>> kord;
+	kord.resize(4);
+	kord[0] = { X1, Y1 };
+	kord[1] = { X2, Y2 };
+	kord[2] = { X3, Y3 };
+	kord[3] = { X4, Y4 };
+	x1 = kord[0].first;
+	y1 = kord[0].second;
+	x2 = kord[1].first;
+	y2 = kord[1].second;
+	x3 = kord[2].first;
+	y3 = kord[2].second;
+	x4 = kord[3].first;
+	y4 = kord[3].second;
 	si1 = ca_side(x1, x2, y1, y2);
 	si2 = ca_side(x2, x3, y2, y3);
 	si3 = ca_side(x3, x4, y3, y4);
