@@ -1,0 +1,37 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+class AnalogSensor {
+private:
+    int reading;
+public:
+    AnalogSensor() {
+        reading = 0;
+    }
+    void readFromFile(string filename) {
+        ifstream file(filename);
+        if (file.is_open()) {
+            file >> reading;
+        }
+        file.close();
+    }
+    int getValue() {
+        return reading;
+    }
+    bool isTriggered() {
+        return reading == 1;
+    }
+};
+int main() {
+    AnalogSensor sensor;
+    string filename = "sensor_reading.txt";
+    sensor.readFromFile(filename);
+    cout << "Показания датчика: " << sensor.getValue() << endl;
+    if (sensor.isTriggered()) {
+        cout << "Датчик сработал" << endl;
+    }
+    else {
+        cout << "Датчик не активен" << endl;
+    }
+    return 0;
+}
